@@ -1,5 +1,5 @@
 import json
-import cv2
+#import cv2
 import pandas as pd
 import base64
 import numpy as np
@@ -13,6 +13,7 @@ def extractImages(path, timestamp):
 def load_json(path):
     with open(path, 'r') as f:
         data = json.load(f)
+        if 'videos' in data: data = data['videos'] #ego4d nlq
     return data
 
 def load_video_frames(video_path, vid, start, end, freq=30*15):
@@ -28,26 +29,38 @@ def load_video_frames(video_path, vid, start, end, freq=30*15):
         base64Frames.append({"image": base64.b64encode(cache).decode("utf-8"), "resize": 336}) 
         start += freq
     video.release()
-    #print(len(base64Frames))
     return base64Frames
 
-def load_annotations(ann_path, start = 0, end = None):
-    query_rows = []
-    count = 0
+def load_queries(ann_path, task, start = 0, end = 3):
     annotations = load_json(ann_path)
     start = max(0, start)
-    if end: end = min(end, len(annotations['videos']))
-    for v in annotations['videos'][start:end]:
+    if end: end = min(end, len(annotations))
+    if 'nlq' in task.lower():
+        return load_ego4dnlq_queries(annotations[start:end])
+    if 'qa' in task.lower():
+        return load_egoschema_queries(annotations[start:end])
+
+def load_ego4dnlq_queries(annotations):
+    query_map = {}
+    count = 0
+    for v in annotations:
         vid = v['video_uid']
         for c in v['clips']:
             cid = c['clip_uid']
             for a in c['annotations']:
+                clip_queries = f"query \t query_index"
                 for query in a['language_queries']:
                     count += 1
                     if 'query' in query and query['query']:
-                        query_rows.append({'vid':vid, 'cid':cid, 'query': query['query'], 'query_index': count})
-    query_df = pd.DataFrame(query_rows)
-    return query_df
+                        clip_queries += f"{query['query']} \t {count} \n"
+            query_map[(cid, vid)] = clip_queries
+    return query_map
+
+def load_egoschema_queries(annotations):
+    query_map = {}
+    for query in annotations:
+        query_map[query['q_uid']] = f'Question: {query["question"]} \n' + '\n'.join([f"Option {i}: " + query[f"option {i}"] for i in range(5)])
+    return query_map
 
 def load_clip_start_end_frame(ann_path):
     clip_dic = {}
