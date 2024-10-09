@@ -12,6 +12,8 @@
 
 ### Quick start
 
+Captions (LaViLa on every 2s video clip + caption digest): [Google drive link](https://drive.google.com/file/d/1uNIcw0r3UnPoHQ4fJEqRHB2gUhQT4HWj/view?usp=sharing)
+
 #### Ego4D NLQ
 ```
 python scripts/llm_reason.py \
