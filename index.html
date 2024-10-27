@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="LifelongMemory: Leveraging LLMs for Answering Queries in Egocentric Videos"/>
+  <meta property="og:description" content="An LLM-based framework that provides finegraned temporal windows for natural language queries on egocentric videos"/>
+  <meta property="og:url" content="https://agenticlearning.ai/lifelong-memory/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/pipeline.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="LifelongMemory: Leveraging LLMs for Answering Queries in Egocentric Videos">
+  <meta name="twitter:description" content="An LLM-based framework that provides finegraned temporal windows for natural language queries on egocentric videos">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/pipeline.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="LifelongMemory,LLM,NLQ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>LifelongMemory</title>
+  <link rel="icon" type="image/x-icon" href="static/images/icon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">LifelongMemory: Leveraging LLMs for Answering Queries in Long-form Egocentric Videos</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://yingwangg.github.io/" target="_blank">Ying Wang</a>,</span>
+                <span class="author-block">
+                  <a href="https://yanlai00.github.io/" target="_blank">Yanlai Yang</a>,</span>
+                  <span class="author-block">
+                    <a href="https://mengyeren.com/" target="_blank">Mengye Ren</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">New York University</span>
+                    <!-- <span class="author-block">New York University<br>Conferance name and year</span> -->
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2312.05269.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <!-- <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/Agentic-Learning-AI-Lab/lifelong-memory" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                  </span>
+
+                <!-- ArXiv abstract Link -->
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper we introduce LifelongMemory, a new framework for accessing long-form egocentric videographic memory through natural language question answering and retrieval. LifelongMemory generates concise video activity descriptions of the camera wearer and leverages the zero-shot capabilities of pretrained large language models to perform reasoning over long-form video context. Furthermore, LifelongMemory uses a confidence and explanation module to produce confident, high-quality, and interpretable answers. Our approach achieves state-of-the-art performance on the EgoSchema benchmark for question answering and is highly competitive on the natural language query (NLQ) challenge of Ego4D.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!--Pipeline -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3"><br>Pipeline</h2>
+    <div class="hero-body">
+      <img src="static/images/pipeline.png" alt="MY ALT TEXT"/>
+    </div>
+  </div>
+</section>
+<!-- Pipeline -->
+
+<!--example -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <h2 class="title is-5">Stage 1: Video Captioning</h2>
+    <h2> A multi-modal LLM (MLLM) produces captions from a list of short video clips.  Content and query similarity filters are then applied to remove redundant and irrelevant captions.  </h2>
+    <div class="hero-body">
+      <center><video poster="" id="video1" autoplay controls muted width="700" height="50%">
+        <source src="static/videos/stageone.mp4"
+        type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<!--example -->
+
+<!--example -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <h2 class="title is-5">Stage 2: LLM Reasoning </h2>
+    <h2> An LLM is instructed to take inputs from the list of condensed captions and retrieve the most relevant interval candidates. </h2>
+    <div class="hero-body">
+      <center><img src="static/images/stagetwo.png" width="700" alt="MY ALT TEXT"/>
+    </div>
+  </div>
+</section>
+<!--example -->
+
+<!--example -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <h2 class="title is-5">Stage 3: Output Refinement</h2>
+    <h2> For video QA, ensemble the predictions of multiple runs using vote by confidence. </h2>
+    <div class="hero-body">
+      <center><img src="static/images/votebyconfidence.png" width="700" alt="MY ALT TEXT"/>
+    </div>
+    <h2> For NLQ, feed candidate intervals predicted by our previous stage into a pretrained NLQ model to obtain a finegrained prediction. </h2>
+    <div class="hero-body">
+      <center><video poster="" id="video1" autoplay controls muted width="700" height="50%">
+        <!-- Your video file here -->
+        <source src="static/videos/stagethree.mp4"
+        type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<!--example -->
+
+<!-- Video carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Visualization</h2>
+      <h2> We visualize the raw predictions of the LLM below. The LLM generates high-quality results without any post-processing. </h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <center><video poster="" id="video1" autoplay controls muted width="600">
+            <!-- Your video file here -->
+            <source src="static/videos/open_fridge.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: what time did i open the fridge? <br> 
+            LLM: C opens the fridge at 480-540.
+          </h2>
+        </div>
+        <div class="item item-video1">
+          <center><video poster="" id="video1" autoplay controls muted width="600">
+            <!-- Your video file here -->
+            <source src="static/videos/bucket.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: Where did I put the bucket? <br> 
+            LLM: The bucket is mentioned as being put on the ground twice in this interval.
+          </h2>
+        </div>
+        <div class="item item-video1">
+          <center><video poster="" id="video1" autoplay controls muted width="600">
+            <!-- Your video file here -->
+            <source src="static/videos/fridge.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: What did I put in the refrigerator? <br> 
+            LLM: You put a bottle in the refrigerator.
+          </h2>
+        </div>
+        <div class="item item-video2">
+          <center><video poster="" id="video2" autoplay controls muted width="600">
+            <!-- Your video file here -->
+            <source src="static/videos/fueltank.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: Did i leave the fuel tank open? <br> 
+            LLM: You opened the tank, but it is not specified whether you left it open or not.
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <center><video poster="" id="video3" autoplay controls muted width="600">\
+            <!-- Your video file here -->
+            <source src="static/videos/keg.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: What color is the keg I picked from the floor? <br> 
+            LLM: You picked up a jerrycan from the ground and put it down on the floor, but the color of the keg is not specified in the memory.
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <center><video poster="" id="video3" autoplay controls muted width="600">\
+            <!-- Your video file here -->
+            <source src="static/videos/drink.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: Where was can drink before I drank it? <br> 
+            LLM: C picks a can. This is the action before C drank from the can.
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <center><video poster="" id="video3" autoplay controls muted width="600">\
+            <!-- Your video file here -->
+            <source src="static/videos/wood.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: How many wood planks did I carry? <br> 
+            LLM: C carries the wood. The exact number of planks is not specified.
+          </h2>
+        </div>
+        <div class="item item-video3">
+          <center><video poster="" id="video3" autoplay controls muted width="600">\
+            <!-- Your video file here -->
+            <source src="static/videos/egg.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Query: Where was the egg before I picked it? <br> 
+            LLM: The egg was in the fridge before you picked it.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End video carousel -->
+
+<!--Pipeline -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Quantitative Evaluation</h2>
+    <h2> Our approach achieves state-of-the-art performance on the EgoSchema benchmark for question answering and is highly competitive on the natural language query (NLQ) challenge of Ego4D. </h2>
+    <div class="hero-body">
+      <center><img src="static/images/qa_results.png" width="600" alt="MY ALT TEXT" />
+    </div>
+    <div class="hero-body">
+      <center><img src="static/images/nlq_results.png" width="600" alt="MY ALT TEXT" />
+    </div>
+    <h2> We also quantitatively evaluate our proposed framework with different captioning models, LLMs, pre-processing techniques, prompts. Please read our paper for more details.<br> <br>  </h2>
+  </div>
+</section>
+<!-- Pipeline -->
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+<!-- Youtube video -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">  
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End youtube video -->
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Video Presentation</h2>
+    <div class="hero-body">
+      <video poster="" id="video1" autoplay controls muted loop height="100%">
+        <!-- Your video file here -->
+        <source src="static/videos/lifelongmemory_full.mp4"
+        type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{wang2024lifelongmemory,
+      title={LifelongMemory: Leveraging LLMs for Answering Queries in Long-form Egocentric Videos}, 
+      author={Ying Wang and Yanlai Yang and Mengye Ren},
+      year={2024},
+      eprint={2312.05269},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
