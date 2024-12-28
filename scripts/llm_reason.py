@@ -16,7 +16,7 @@ import anthropic
 import re
 
 def call_llm_api(client, system_prompt, user_prompt, model_name, max_len=4096, temp=0):
-    if "llama" in model_name:
+    if "llama" in model_name.lower():
         from models.llama3.api.datatypes import SystemMessage, UserMessage
         prompt_messages = [SystemMessage(content=system_prompt), UserMessage(content=user_prompt)]
         response = client.chat_completion(
@@ -26,7 +26,7 @@ def call_llm_api(client, system_prompt, user_prompt, model_name, max_len=4096, t
         )
         return response.generation.content
     prompt_messages = [ {"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}]
-    if 'claude' in model_name:
+    if 'claude' in model_name.lower():
         response = client.messages.create(
             system = system_prompt,
             messages = [prompt_messages[1]],
@@ -100,7 +100,7 @@ def main(args):
     elif 'llama' in args.llm_model:
         sys.path.append("llama-models") #TODO: Replace by your path to llama
         from models.llama3.reference_impl.generation import Llama
-        llama_dir = "/vast/work/public/ml-datasets/llama-3/Meta-Llama-3-8B-Instruct"   #TODO: Replace by your path to llama checkpoints
+        llama_dir = args.llm_model   # "/vast/work/public/ml-datasets/llama-3/Meta-Llama-3-8B-Instruct"
         client = Llama.build(ckpt_dir=llama_dir, tokenizer_path=f"{llama_dir}/tokenizer.model", max_seq_len=4096, max_batch_size=1)
     elif args.anthropic:
         client = anthropic.Anthropic(api_key=args.api_key)
