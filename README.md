@@ -85,6 +85,6 @@ python scripts/caption_digest.py \
     --output_path <the path to the csv containing the preprocessed captions> \
     --llm_model <gpt model name, e.g. gpt-3.5-turbo> \
     --api_key <your OpenAI API key> \
-    --lavila_ckp_path <local path that contains LaViLa checkpoints, e.g. /scratch/yw3076/LaViLa/modelzoo/> \
+    --lavila_ckp_path <local path that contains LaViLa checkpoints, e.g. LaViLa/modelzoo/> \
     --alpha <1/2 of the captioning interval in frames. The default value is 30 because we generate captions every 2s(=60frames). You may need to adjust this value>
 ```
