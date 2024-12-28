@@ -9,6 +9,9 @@ class PromptTemplate:
     def get_system_prompt(self):
         return self.system_prompt
     
+    def get_user_prompt(self, input):
+        return input
+    
 class NLQPromptTemplate(PromptTemplate):
     """ Prompt template for NLQ. """
     def __init__(self, system_prompt, user_begin_text, user_end_text):
@@ -55,4 +58,7 @@ def load_template(name):
                         "Please provide a concise one-sentence explanation for your chosen answer. If you are uncertain about the correct option, select the one that seems closest to being correct. "           
         user_end = "The dictionary with keys of prediction, explanation, confidence, where prediction is a number. "
         return QAPromptTemplate(system_prompt, "", user_end)
+    if 'merge' in name:
+        system_prompt = "In this task, you will merge a list of captions into a single, concise caption. Focus on clarity and brevity while ensuring that no critical details are lost in the merging process."
+        return PromptTemplate(system_prompt, "", "")
     raise ValueError("Invalid task name. Expected to contain NLQ or QA.")

@@ -1,8 +1,9 @@
 import json
-#import cv2
+import cv2
 import pandas as pd
 import base64
 import numpy as np
+import re
 
 def extractImages(path, timestamp):
     vidcap = cv2.VideoCapture(path)
@@ -71,6 +72,14 @@ def load_clip_start_end_frame(ann_path):
             cid = c['clip_uid']
             clip_dic[(vid,cid)] = round(c['video_start_sec'] * 30), round(c['video_end_sec'] * 30)
     return clip_dic
+
+PATTERN = re.compile(r'prediction\s*[^\d]*\s*(\d+)', re.IGNORECASE)
+def postprocess(s):
+    match = PATTERN.search(s)
+    if match:
+        return match.group(1)
+    else:
+        return re.findall('[0-9]+', s)[0]
 
 
 
