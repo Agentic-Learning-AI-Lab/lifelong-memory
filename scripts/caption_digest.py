@@ -144,7 +144,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('LifelongMemory caption digest argument parser')
     parser.add_argument('--annotation_path', required=True, type=str, help='path to the ego4d nlq annotation file')
-    parser.add_argument('--lavila_ckp_path', required=True, type=str, help='Name of task, should contain NLQ or QA.', default = '/scratch/yw3076/LaViLa/modelzoo/')
+    parser.add_argument('--lavila_ckp_path', required=True, type=str, help='Name of task, should contain NLQ or QA.')
     parser.add_argument('--caption_path', required=True, type=str, help='path to the captions from the egocentric video')
     parser.add_argument('--output_path', required=True, type=str, help='path to the csv containing the results from GPT4')
     parser.add_argument('--openai_key', required=True, type=str, help='openai api key', default = 'EMPTY')

@@ -48,7 +48,7 @@ def call_llm_api(client, system_prompt, user_prompt, model_name, max_len=4096, t
 
 def llm_inference(client, model_name, template, queries, captions=None, clip_time_dic=None, video_path=None):
     responses = []
-    for k, query_text in tqdm(list(queries.items())[0:1]):
+    for k, query_text in tqdm(list(queries.items())):
         # auto retry if reaching openai's rate limit
         for _ in range(3):
             try:
